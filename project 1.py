@@ -38,8 +38,8 @@ class HammingCode:
 
             OE_parity = 0
 
-            for i in range(len(self.encoded_word)):
-                OE_parity = OE_parity ^ self.encoded_word[i]
+            for i, item in enumerate(self.encoded_word):
+                OE_parity = OE_parity ^ item
 
             print(OE_parity)
 
@@ -47,8 +47,8 @@ class HammingCode:
                 mul = []
                 for i in range(len(parity_transpose[0])):
                     sum = 0
-                    for j in range(len(rcvd_word)):
-                        sum = sum + parity_transpose[j][i] * rcvd_word[j]
+                    for j, item in enumerate(rcvd_word):
+                        sum = sum + parity_transpose[j][i] * item
                     # print(sum)
                     mul.append(sum % 2)
 
@@ -65,9 +65,9 @@ class HammingCode:
                 x = [bin(i + 1)[2:].zfill(k) for i in range(p)]
 
                 y = []
-                for i in range(len(x)):
-                    for j in range(len(x[i])):
-                        y.append(x[i][j])
+                for i, _ in enumerate(x):
+                    for j, item in enumerate(x[i]):
+                        y.append(item)
                 # converting it from string to int
                 results = list(map(int, y))
                 print(results)
@@ -129,8 +129,8 @@ class HammingCode:
 
             # checking syndrome vector is present in parity matrix
             index = 0
-            for n in range(len(par_transpose)):
-                if ((sum_synd != 0) and (synd == par_transpose[n])):
+            for n, item in enumerate(par_transpose):
+                if ((sum_synd != 0) and (synd == item)):
                     index = n + 1
 
             if (index > 0):
